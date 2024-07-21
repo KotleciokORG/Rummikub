@@ -6,7 +6,7 @@ namespace TestData;
 
 public static class Test
 {
-    private static bool tesame(ObservableCollection<Block> set)
+    public static bool tesame(ObservableCollection<Block> set)
     {
         //0 1
         if (set.Count < 2) return true;
@@ -26,7 +26,7 @@ public static class Test
         return false; //should not happen
     }
 
-    private static bool nastepne(ObservableCollection<Block> set)
+    public static bool nastepne(ObservableCollection<Block> set)
     {
         if (set.Count < 2) return true;
         for (var i = 1; i < set.Count; i++)
@@ -83,7 +83,7 @@ public static class Test
     public static Block RandomBlock()
     {
         var rand = new Random();
-        var ret = new Block(rand.Next(1, 13), (Block.COLOUR)rand.Next(0, 3));
+        var ret = new Block(rand.Next(1, 13), (Block.COLOUR)rand.Next(0, 4));
         return ret;
     }
 

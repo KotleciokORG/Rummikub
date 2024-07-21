@@ -24,7 +24,7 @@
                    FontWeight="Bold" FontSize="25">
                 Rummikub
             </Label>
-            <Rectangle Grid.Column="1" Width="50" Fill="Black" />
+            <Button Grid.Column="1" Width="50" Background="Black" Click="DrawBlockEvent">Draw</Button>
         </Grid>
 
         <!-- Board       !-->
@@ -140,9 +140,15 @@
             </Grid>
         
         </Border>
-        <Border Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Click="PassButtonEvent">Pass</Button>
-        </Border>
+        <Grid Grid.Row="3" ColumnDefinitions="*,Auto">
+            <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Click="PassButtonEvent">Pass</Button>
+            </Border>
+            <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Button Click="MakeNewSuccSetEvent">Create Succ</Button>
+                <Button Click="MakeNewSameSetEvent">Create Same</Button>
+            </Grid>
+        </Grid>
     </Grid>
 
 

@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Rummikub.src;
+using TestData;
 
 namespace Rummikub.Views;
 
@@ -41,6 +42,21 @@ public partial class MainWindow : Window
     public void PassButtonEvent(object sender, RoutedEventArgs args)
     {
         EH.PassButtonHandler();
+    }
+
+    public void DrawBlockEvent(object sender, RoutedEventArgs args)
+    {
+        EH.DrawBlockHandler();
+    }
+
+    public void MakeNewSuccSetEvent(object sender, RoutedEventArgs args)
+    {
+        EH.MakeNewSet(Test.nastepne);
+    }
+
+    public void MakeNewSameSetEvent(object sender, RoutedEventArgs args)
+    {
+        EH.MakeNewSet(Test.tesame);
     }
     
 }

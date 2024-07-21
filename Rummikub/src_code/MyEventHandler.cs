@@ -1,18 +1,42 @@
 using System;
 using Avalonia.Input;
 using Rummikub.src;
+using TestData;
 
 namespace Rummikub;
 
 public class MyEventHandler
 {
+    private Game RGame = App.MVMObject.RummikubGame;
     public void PassButtonHandler()
     {
-        App.MVMObject.RummikubGame.NextPlayer();
+        if (RGame.ActivePlayer.HoldedBlock != null)
+        {
+            RGame.ActivePlayer.Put_Block(RGame.ActivePlayer.Hand,0);
+        }
+        RGame.UpdatePassInfo();
+        if(RGame.CanBePassed)
+            RGame.NextPlayer();
+    }
+
+    public void MakeNewSet(Set_of_Blocks.Condition cond)
+    {
+        Set_of_Blocks fresh = new Set_of_Blocks(cond);
+        
+        RGame.BlockSetGhen.Add(fresh);
+    }
+    public void DrawBlockHandler()
+    {
+        if (RGame.CanDraw)
+        {
+            RGame.ActivePlayer.Hand.Add(Test.RandomBlock());
+            RGame.CanBePassed = true;
+            RGame.CanDraw = false;
+        }
     }
     public void BlockPressedHandler(Block block, object parentGroupObj, PointerPressedEventArgs e)
     {
-        var player = App.MVMObject.RummikubGame.ActivePlayer;
+        var player = RGame.ActivePlayer;
         if (block == null) throw new Exception("Null Block");
 
         if (player.HoldedBlock == null)

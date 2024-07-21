@@ -130,3 +130,4 @@
 /home/kacper/RiderProjects/Rummikub/Rummikub/obj/Debug/net8.0/Rummikub.csproj.CopyComplete
 /home/kacper/RiderProjects/Rummikub/Rummikub/obj/Debug/net8.0/Rummikub.genruntimeconfig.cache
 /home/kacper/RiderProjects/Rummikub/Rummikub/obj/Debug/net8.0/ref/Rummikub.dll
+/home/kacper/RiderProjects/Rummikub/Rummikub/obj/Debug/net8.0/Rummikub.sourcelink.json

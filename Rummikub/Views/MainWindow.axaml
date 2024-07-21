@@ -1,0 +1,149 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Rummikub.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="500" Height="500" Width="800"
+        x:Class="Rummikub.Views.MainWindow"
+        RequestedThemeVariant="Light"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Rummikub">
+
+    <Window.DataContext>
+        <vm:MainViewModel />
+    </Window.DataContext>
+
+    <!-- testy -->
+
+    <Grid RowDefinitions="Auto,*,Auto,Auto">
+        <!-- Header !-->
+        <Grid Grid.Row="0" ColumnDefinitions="*,Auto" Background="Crimson" Height="50">
+            <Label Grid.Column="0"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   FontWeight="Bold" FontSize="25">
+                Rummikub
+            </Label>
+            <Rectangle Grid.Column="1" Width="50" Fill="Black" />
+        </Grid>
+
+        <!-- Board       !-->
+        <Border Padding="10" Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding RummikubGame.BlockSetGhen}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <!-- Design of sets allignment -->
+                        <WrapPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <!-- Ghen of sets-->
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <!-- Set of blocks -->
+                        <ItemsControl ItemsSource="{Binding Blocks }">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <!-- Allignment of blocks -->
+                                    <StackPanel Background="{Binding BackgroundColor}" Margin="5,5,5,5"
+                                                Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- Design of Single block -->
+                                    <Border
+                                        PointerPressed="BlockPressedEvent"
+                                        Margin="2,5,2,5"
+                                        CornerRadius="5"
+                                        BorderBrush="Gray" BorderThickness="1"
+                                        Padding="5"
+                                        Width="40"
+                                        Height="50"
+                                        Background="{Binding BackgroundColour}">
+                                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                   FontWeight="Bold" FontSize="25" Text="{Binding Number}"
+                                                   Foreground="{Binding BrushColour}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <!-- 
+                        <Border Margin="0,10,0,0"
+                                CornerRadius="5"
+                                BorderBrush="Gray" BorderThickness="1"
+                                Padding="5">
+                            <TextBlock Background="Gray" Text="{Binding Desc}" />
+                        </Border>
+                        !-->
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Border>
+        <!-- Player !-->
+        <Border Grid.Row="2" DataContext="{Binding RummikubGame.ActivePlayer}">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Border Padding="5" Margin="3,3,3,3" Background="Bisque" Grid.Column="0">
+                    <StackPanel Background="Khaki">
+                        <Label Content="{Binding Name}" />
+                        <Label>Punkty: 10</Label>
+                        <Label>Aktywny</Label>
+                    </StackPanel>
+                </Border>
+                <Border Grid.Column="1" Background="Salmon" Margin="3,3,3,3">
+                    <!-- Pseudo lista graczy -->
+                    <ItemsControl DataContext="{Binding Hand}" ItemsSource="{Binding Blocks}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <!-- Design of player hand -->
+                                <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                                           Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <!-- Single block !-->
+                                <Border
+                                    PointerPressed="BlockPressedEvent"
+                                    Margin="2,5,2,5"
+                                    CornerRadius="5"
+                                    BorderBrush="Gray" BorderThickness="1"
+                                    Padding="5"
+                                    Width="40"
+                                    Height="50"
+                                    Background="{Binding BackgroundColour}">
+                                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                               FontWeight="Bold" FontSize="25" Text="{Binding Number}"
+                                               Foreground="{Binding BrushColour}" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </Border>
+                <Border Grid.Column="2">
+                    <Border Background="DarkOrange" Margin="5,5,5,5" DataContext="{Binding HoldedBlock}">
+                        <Border
+                            Margin="2,5,2,5"
+                            CornerRadius="5"
+                            BorderBrush="Gray" BorderThickness="1"
+                            Padding="5"
+                            Width="40"
+                            Height="50"
+                            Background="{Binding BackgroundColour}">
+                            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                       FontWeight="Bold" FontSize="25" Text="{Binding Number}"
+                                       Foreground="{Binding BrushColour}" />
+                        </Border>
+                    </Border>
+                </Border>
+            </Grid>
+        
+        </Border>
+        <Border Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Click="PassButtonEvent">Pass</Button>
+        </Border>
+    </Grid>
+
+
+</Window>

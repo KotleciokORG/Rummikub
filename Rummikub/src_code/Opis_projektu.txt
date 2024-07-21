@@ -1,0 +1,34 @@
+Rummikub to gra od 2 do 4 graczy, ktorej celem jest pozbycie sie wszystkich kostek ze swojej reki.
+Kostki wystepuja w 4 wariantach kolorystycznych i liczbach od 1 do 13
+Po uzgodnieniu kolejnosci graczy, kazdy z nich na start otrzymuje 14 kostek.
+
+Aby zrobic swoj pierwszy ruch, gracz musi wylozyc kostki o sumie minimum 30 punktow.
+kolejne ruchy nie maja tego wymogu
+Jezeli gracz nie pozbyl sie zadnej kostki z reki, ciagnie nowa ze stosu.
+Nie mozna zabrac kostki z planszy z powrotem do reki, chyba ze w przypadku nieudanego ruchu,
+kiedy to trzeba zabrac wszystkie niepolaczone kostki
+
+Na planszy moga pojawic sie dwa rodzaje zbiorow kostek (Set)
+Seria i grupa
+Seria to co najmniej 3 kosti o kolejnych numerach tego samego koloru
+Grupa to trzy lub cztery kostki z tym samym numerem w roznych kolorach
+
+Prawdziwej pikanterii tej grze dodaje fakt, ze gracze moga manipulowac
+kostkami na stole tak dlugo, az zasady Serii i Grup sa dalej zachowywane
+W grze wystepuja rowniez Jokery, ktore moga byc dowolna kostka w grze
+
+Odnosnie diagramu klas (nalezy otworzyc strona diagrams.net) :
+
+Klasa Block bedzie pojedyncza kostka, ktora ma atrybuty jak wskazane, oraz informacje czy jest Jokerem
+Klasy [__] Jokerm, dziedziczaca z klasy Block, to specjalne kostki, ktore beda miec rozne dzialanie w naszej grze
+Klase Block Group mozemy traktowac jako kupke kostek bez zadnego porzadku, zaimplementowana jak wskazano
+
+Klasa Set of Blocks to specjalny rodzaj Block Group, dlatego z niej dziedziczy. Rozni sie tym,
+ze aby "istniec" musi spelniac warunek podany jako funkcja Condition zwracajaca prawde lub falsz. 
+W ten sposob bede reprezentowac Serie i Grupy z gry Remikub
+
+Klasa Player przechowuje wszystkie niezbedne informacje dotyczace gracza, w przyszlosci mozliwe bedzie
+oddzielenie konceptu Profilu Gracza od Gracza w Grze poprzez dodanie Klasy "Ojca", z ktorej bedzie wywodzic
+Gracz, oraz ewentualny Spectator
+
+Klasa Board ma za zadanie przedstawiac graficznie wszystkie informacje ktore dotycza gry

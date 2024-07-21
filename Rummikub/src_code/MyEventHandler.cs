@@ -21,8 +21,10 @@ public class MyEventHandler
 
     public void MakeNewSet(Set_of_Blocks.Condition cond)
     {
+        if (RGame.ActivePlayer.HoldedBlock == null) return;
         Set_of_Blocks fresh = new Set_of_Blocks(cond);
-        
+        RGame.ActivePlayer.Put_Block(fresh,0);
+        fresh.Update_correctness();
         RGame.BlockSetGhen.Add(fresh);
     }
     public void DrawBlockHandler()

@@ -69,14 +69,15 @@ public static class Test
         if (rand.Next(0, 2) != 0)
         {
             //succ
-            int from = rand.Next(1, 12);
-            int to = rand.Next(from, 13);
-            return GenerujSuccSet(from, to, (Block.COLOUR)rand.Next(0, 3));
+            int from = rand.Next(1, 10);
+            int size = rand.Next(3, 13-from);
+            int to = from + size;
+            return GenerujSuccSet(from, to, (Block.COLOUR)rand.Next(0, 4));
         }
         else
         {
             //same
-            return GenerujSameSet(rand.Next(1,13), rand.Next(2,4));
+            return GenerujSameSet(rand.Next(1,13), rand.Next(3,4));
         }
     }
 

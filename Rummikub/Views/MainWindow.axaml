@@ -87,7 +87,6 @@
                     <StackPanel Background="Khaki">
                         <Label Content="{Binding Name}" />
                         <Label>Punkty: 10</Label>
-                        <Label>Aktywny</Label>
                     </StackPanel>
                 </Border>
                 <Border Grid.Column="1" Background="Salmon" Margin="3,3,3,3">
@@ -140,14 +139,21 @@
             </Grid>
         
         </Border>
-        <Grid Grid.Row="3" ColumnDefinitions="*,Auto">
-            <Border Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Click="PassButtonEvent">Pass</Button>
-            </Border>
-            <Grid Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Click="MakeNewSuccSetEvent">Create Succ</Button>
-                <Button Click="MakeNewSameSetEvent">Create Same</Button>
-            </Grid>
+        <Grid Grid.Row="3" ColumnDefinitions="*,Auto,Auto" Background="Lavender">
+            
+            <Button HorizontalAlignment = "Stretch" VerticalAlignment="Stretch" 
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    CornerRadius="15"
+                    Background="Goldenrod"
+                    Grid.Column="0" Click="PassButtonEvent">Pass</Button>
+            <Button Grid.Column="1" Click="MakeNewSuccSetEvent"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    CornerRadius="15"
+                    Background="Aquamarine">Create Succ</Button>
+            <Button Grid.Column="2" Click="MakeNewSameSetEvent"
+                    HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                    CornerRadius="15"
+                    Background="Plum">Create Same</Button>
         </Grid>
     </Grid>
 

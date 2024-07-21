@@ -155,7 +155,7 @@ public partial class Set_of_Blocks(Set_of_Blocks.Condition cond) : Block_Group
     //}  
     public void Update_correctness()
     {
-        Correct = condition(Blocks);
+        Correct = condition(Blocks) && Blocks.Count >= 3;
         if (Correct) BackgroundColor = new ImmutableSolidColorBrush(Colors.PaleGreen);
         else BackgroundColor = new ImmutableSolidColorBrush(Colors.PaleVioletRed);
     }
